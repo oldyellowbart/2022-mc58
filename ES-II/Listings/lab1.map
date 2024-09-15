@@ -4,16 +4,16 @@ Component: ARM Compiler 6.14 Tool: armlink [5db06800]
 
 Section Cross References
 
-    lab_0_task_1.o(.text.main) refers to lab_0_task_1.o(.text.PE0_4_as_Input_Init) for PE0_4_as_Input_Init
-    lab_0_task_1.o(.text.main) refers to lab_0_task_1.o(.text.PortB_as_Output_Init) for PortB_as_Output_Init
-    lab_0_task_1.o(.text.main) refers to lab_0_task_1.o(.text.msDelay) for msDelay
-    lab_0_task_1.o(.ARM.exidx.text.main) refers to lab_0_task_1.o(.text.main) for [Anonymous Symbol]
-    lab_0_task_1.o(.text.PE0_4_as_Input_Init) refers to lab_0_task_1.o(.bss.j) for j
-    lab_0_task_1.o(.ARM.exidx.text.PE0_4_as_Input_Init) refers to lab_0_task_1.o(.text.PE0_4_as_Input_Init) for [Anonymous Symbol]
-    lab_0_task_1.o(.text.PortB_as_Output_Init) refers to lab_0_task_1.o(.bss.j) for j
-    lab_0_task_1.o(.ARM.exidx.text.PortB_as_Output_Init) refers to lab_0_task_1.o(.text.PortB_as_Output_Init) for [Anonymous Symbol]
-    lab_0_task_1.o(.text.msDelay) refers to lab_0_task_1.o(.bss.j) for j
-    lab_0_task_1.o(.ARM.exidx.text.msDelay) refers to lab_0_task_1.o(.text.msDelay) for [Anonymous Symbol]
+    lab_02.o(.text.msDelay) refers to lab_02.o(.bss.j) for j
+    lab_02.o(.ARM.exidx.text.msDelay) refers to lab_02.o(.text.msDelay) for [Anonymous Symbol]
+    lab_02.o(.text.PE0_4_as_Input_Init) refers to lab_02.o(.bss.j) for j
+    lab_02.o(.ARM.exidx.text.PE0_4_as_Input_Init) refers to lab_02.o(.text.PE0_4_as_Input_Init) for [Anonymous Symbol]
+    lab_02.o(.text.PortB_as_Output_Init) refers to lab_02.o(.bss.j) for j
+    lab_02.o(.ARM.exidx.text.PortB_as_Output_Init) refers to lab_02.o(.text.PortB_as_Output_Init) for [Anonymous Symbol]
+    lab_02.o(.text.main) refers to lab_02.o(.text.PE0_4_as_Input_Init) for PE0_4_as_Input_Init
+    lab_02.o(.text.main) refers to lab_02.o(.text.PortB_as_Output_Init) for PortB_as_Output_Init
+    lab_02.o(.text.main) refers to lab_02.o(.text.msDelay) for msDelay
+    lab_02.o(.ARM.exidx.text.main) refers to lab_02.o(.text.main) for [Anonymous Symbol]
     startup_tm4c123.o(STACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_tm4c123.o(HEAP) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_tm4c123.o(RESET) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
@@ -40,7 +40,7 @@ Section Cross References
     __rtentry2.o(.ARM.Collect$$rtentry$$00000008) refers to boardinit2.o(.text) for _platform_post_stackheap_init
     __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) refers to libinit.o(.ARM.Collect$$libinit$$00000000) for __rt_lib_init
     __rtentry2.o(.ARM.Collect$$rtentry$$0000000B) refers to boardinit3.o(.text) for _platform_post_lib_init
-    __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to lab_0_task_1.o(.text.main) for main
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to lab_02.o(.text.main) for main
     __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to exit.o(.text) for exit
     __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$00000001) for .ARM.Collect$$rtentry$$00000001
     __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$00000008) for .ARM.Collect$$rtentry$$00000008
@@ -141,12 +141,12 @@ Section Cross References
 
 Removing Unused input sections from the image.
 
-    Removing lab_0_task_1.o(.text), (0 bytes).
-    Removing lab_0_task_1.o(.ARM.exidx.text.main), (8 bytes).
-    Removing lab_0_task_1.o(.ARM.exidx.text.PE0_4_as_Input_Init), (8 bytes).
-    Removing lab_0_task_1.o(.ARM.exidx.text.PortB_as_Output_Init), (8 bytes).
-    Removing lab_0_task_1.o(.ARM.exidx.text.msDelay), (8 bytes).
-    Removing lab_0_task_1.o(.ARM.use_no_argv), (4 bytes).
+    Removing lab_02.o(.text), (0 bytes).
+    Removing lab_02.o(.ARM.exidx.text.msDelay), (8 bytes).
+    Removing lab_02.o(.ARM.exidx.text.PE0_4_as_Input_Init), (8 bytes).
+    Removing lab_02.o(.ARM.exidx.text.PortB_as_Output_Init), (8 bytes).
+    Removing lab_02.o(.ARM.exidx.text.main), (8 bytes).
+    Removing lab_02.o(.ARM.use_no_argv), (4 bytes).
     Removing system_tm4c123.o(.text), (0 bytes).
     Removing system_tm4c123.o(.text.SystemCoreClockUpdate), (148 bytes).
     Removing system_tm4c123.o(.ARM.exidx.text.SystemCoreClockUpdate), (8 bytes).
@@ -216,9 +216,9 @@ Image Symbol Table
     ../clib/signal.s                         0x00000000   Number         0  defsig.o ABSOLUTE
     ../clib/stdlib.c                         0x00000000   Number         0  exit.o ABSOLUTE
     ../fplib/fpinit.s                        0x00000000   Number         0  fpinit.o ABSOLUTE
-    Lab_0_Task_1.c                           0x00000000   Number         0  lab_0_task_1.o ABSOLUTE
     RTE/Device/TM4C123GH6PM/startup_TM4C123.s 0x00000000   Number         0  startup_tm4c123.o ABSOLUTE
     dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
+    lab_02.c                                 0x00000000   Number         0  lab_02.o ABSOLUTE
     system_TM4C123.c                         0x00000000   Number         0  system_tm4c123.o ABSOLUTE
     RESET                                    0x00000000   Section      620  startup_tm4c123.o(RESET)
     !!!main                                  0x0000026c   Section        8  __main.o(!!!main)
@@ -274,13 +274,13 @@ Image Symbol Table
     .text                                    0x00000470   Section        0  sys_exit.o(.text)
     .text                                    0x0000047c   Section        2  use_no_semi.o(.text)
     .text                                    0x0000047e   Section        0  indicate_semi.o(.text)
-    [Anonymous Symbol]                       0x00000480   Section        0  lab_0_task_1.o(.text.PE0_4_as_Input_Init)
-    [Anonymous Symbol]                       0x000004d8   Section        0  lab_0_task_1.o(.text.PortB_as_Output_Init)
+    [Anonymous Symbol]                       0x00000480   Section        0  lab_02.o(.text.PE0_4_as_Input_Init)
+    [Anonymous Symbol]                       0x000004d8   Section        0  lab_02.o(.text.PortB_as_Output_Init)
     [Anonymous Symbol]                       0x00000530   Section        0  system_tm4c123.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x000005a0   Section        0  lab_0_task_1.o(.text.main)
-    [Anonymous Symbol]                       0x00000720   Section        0  lab_0_task_1.o(.text.msDelay)
-    $v0                                      0x0000074a   Number         0  fpinit.o(x$fpl$fpinit)
-    x$fpl$fpinit                             0x0000074a   Section       26  fpinit.o(x$fpl$fpinit)
+    [Anonymous Symbol]                       0x000005a0   Section        0  lab_02.o(.text.main)
+    [Anonymous Symbol]                       0x00000648   Section        0  lab_02.o(.text.msDelay)
+    $v0                                      0x00000672   Number         0  fpinit.o(x$fpl$fpinit)
+    x$fpl$fpinit                             0x00000672   Section       26  fpinit.o(x$fpl$fpinit)
     .bss                                     0x20000000   Section       96  libspace.o(.bss)
     Heap_Mem                                 0x20000068   Data           0  startup_tm4c123.o(HEAP)
     Stack_Mem                                0x20000068   Data         512  startup_tm4c123.o(STACK)
@@ -502,19 +502,19 @@ Image Symbol Table
     __I$use$semihosting                      0x0000047d   Thumb Code     0  use_no_semi.o(.text)
     __use_no_semihosting_swi                 0x0000047d   Thumb Code     2  use_no_semi.o(.text)
     __semihosting_library_function           0x0000047f   Thumb Code     0  indicate_semi.o(.text)
-    PE0_4_as_Input_Init                      0x00000481   Thumb Code    86  lab_0_task_1.o(.text.PE0_4_as_Input_Init)
-    PortB_as_Output_Init                     0x000004d9   Thumb Code    86  lab_0_task_1.o(.text.PortB_as_Output_Init)
+    PE0_4_as_Input_Init                      0x00000481   Thumb Code    86  lab_02.o(.text.PE0_4_as_Input_Init)
+    PortB_as_Output_Init                     0x000004d9   Thumb Code    86  lab_02.o(.text.PortB_as_Output_Init)
     SystemInit                               0x00000531   Thumb Code   112  system_tm4c123.o(.text.SystemInit)
-    main                                     0x000005a1   Thumb Code   382  lab_0_task_1.o(.text.main)
-    msDelay                                  0x00000721   Thumb Code    42  lab_0_task_1.o(.text.msDelay)
-    _fp_init                                 0x0000074b   Thumb Code    26  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x00000763   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x00000763   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    Region$$Table$$Base                      0x00000764   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00000774   Number         0  anon$$obj.o(Region$$Table)
+    main                                     0x000005a1   Thumb Code   168  lab_02.o(.text.main)
+    msDelay                                  0x00000649   Thumb Code    42  lab_02.o(.text.msDelay)
+    _fp_init                                 0x00000673   Thumb Code    26  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x0000068b   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x0000068b   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    Region$$Table$$Base                      0x0000068c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0000069c   Number         0  anon$$obj.o(Region$$Table)
     __libspace_start                         0x20000000   Data          96  libspace.o(.bss)
     __temporary_stack_top$libspace           0x20000060   Data           0  libspace.o(.bss)
-    j                                        0x20000060   Data           4  lab_0_task_1.o(.bss.j)
+    j                                        0x20000060   Data           4  lab_02.o(.bss.j)
 
 
 
@@ -524,9 +524,9 @@ Memory Map of the image
 
   Image Entry point : 0x000002f1
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00000774, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x0000069c, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000774, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x0000069c, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -586,30 +586,29 @@ Memory Map of the image
     0x0000047c   0x0000047c   0x00000002   Code   RO          152    .text               c_w.l(use_no_semi.o)
     0x0000047e   0x0000047e   0x00000000   Code   RO          154    .text               c_w.l(indicate_semi.o)
     0x0000047e   0x0000047e   0x00000002   PAD
-    0x00000480   0x00000480   0x00000056   Code   RO            4    .text.PE0_4_as_Input_Init  lab_0_task_1.o
+    0x00000480   0x00000480   0x00000056   Code   RO            4    .text.PE0_4_as_Input_Init  lab_02.o
     0x000004d6   0x000004d6   0x00000002   PAD
-    0x000004d8   0x000004d8   0x00000056   Code   RO            6    .text.PortB_as_Output_Init  lab_0_task_1.o
+    0x000004d8   0x000004d8   0x00000056   Code   RO            6    .text.PortB_as_Output_Init  lab_02.o
     0x0000052e   0x0000052e   0x00000002   PAD
     0x00000530   0x00000530   0x00000070   Code   RO           33    .text.SystemInit    system_tm4c123.o
-    0x000005a0   0x000005a0   0x0000017e   Code   RO            2    .text.main          lab_0_task_1.o
-    0x0000071e   0x0000071e   0x00000002   PAD
-    0x00000720   0x00000720   0x0000002a   Code   RO            8    .text.msDelay       lab_0_task_1.o
-    0x0000074a   0x0000074a   0x0000001a   Code   RO          135    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x00000764   0x00000764   0x00000010   Data   RO          210    Region$$Table       anon$$obj.o
+    0x000005a0   0x000005a0   0x000000a8   Code   RO            8    .text.main          lab_02.o
+    0x00000648   0x00000648   0x0000002a   Code   RO            2    .text.msDelay       lab_02.o
+    0x00000672   0x00000672   0x0000001a   Code   RO          135    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x0000068c   0x0000068c   0x00000010   Data   RO          210    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00000774, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x0000069c, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x00000774, Size: 0x00000268, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x0000069c, Size: 0x00000268, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000000        -       0x00000060   Zero   RW           77    .bss                c_w.l(libspace.o)
-    0x20000060        -       0x00000004   Zero   RW           10    .bss.j              lab_0_task_1.o
-    0x20000064   0x00000774   0x00000004   PAD
+    0x20000060        -       0x00000004   Zero   RW           10    .bss.j              lab_02.o
+    0x20000064   0x0000069c   0x00000004   PAD
     0x20000068        -       0x00000000   Zero   RW           20    HEAP                startup_tm4c123.o
     0x20000068        -       0x00000200   Zero   RW           19    STACK               startup_tm4c123.o
 
@@ -621,14 +620,14 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       596          0          0          0          4       6149   lab_0_task_1.o
-       276         24        620          0        512       5472   startup_tm4c123.o
-       112          0          0          0          0       6582   system_tm4c123.o
+       382          0          0          0          4       6010   lab_02.o
+       276         24        620          0        512       5456   startup_tm4c123.o
+       112          0          0          0          0       6565   system_tm4c123.o
 
     ----------------------------------------------------------------------
-       990         24        636          0        520      18203   Object Totals
+       774         24        636          0        520      18031   Object Totals
          0          0         16          0          0          0   (incl. Generated)
-         6          0          0          0          4          0   (incl. Padding)
+         4          0          0          0          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -676,15 +675,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      1272         40        636          0        616      18663   Grand Totals
-      1272         40        636          0        616      18663   ELF Image Totals
-      1272         40        636          0          0          0   ROM Totals
+      1056         40        636          0        616      18491   Grand Totals
+      1056         40        636          0        616      18491   ELF Image Totals
+      1056         40        636          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 1908 (   1.86kB)
+    Total RO  Size (Code + RO Data)                 1692 (   1.65kB)
     Total RW  Size (RW Data + ZI Data)               616 (   0.60kB)
-    Total ROM Size (Code + RO Data + RW Data)       1908 (   1.86kB)
+    Total ROM Size (Code + RO Data + RW Data)       1692 (   1.65kB)
 
 ==============================================================================
 

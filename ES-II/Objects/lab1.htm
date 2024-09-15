@@ -1,9 +1,9 @@
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html><head>
-<title>Static Call Graph - [.\Objects\Lab_0_Task_1.axf]</title></head>
+<title>Static Call Graph - [.\Objects\lab1.axf]</title></head>
 <body><HR>
-<H1>Static Call Graph for image .\Objects\Lab_0_Task_1.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6140002: Last Updated: Sun Sep 15 23:12:13 2024
+<H1>Static Call Graph for image .\Objects\lab1.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6140002: Last Updated: Sun Sep 15 22:37:51 2024
 <BR><P>
 <H3>Maximum Stack Usage =          8 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1264,18 +1264,18 @@ Global Symbols
 
 <P><STRONG><a name="[b7]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[8b]"></a>PE0_4_as_Input_Init</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, lab_0_task_1.o(.text.PE0_4_as_Input_Init))
+<P><STRONG><a name="[8b]"></a>PE0_4_as_Input_Init</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, lab_02.o(.text.PE0_4_as_Input_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8c]"></a>PortB_as_Output_Init</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, lab_0_task_1.o(.text.PortB_as_Output_Init))
+<P><STRONG><a name="[8c]"></a>PortB_as_Output_Init</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, lab_02.o(.text.PortB_as_Output_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[76]"></a>SystemInit</STRONG> (Thumb, 112 bytes, Stack size 0 bytes, system_tm4c123.o(.text.SystemInit))
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(.text)
 </UL>
-<P><STRONG><a name="[83]"></a>main</STRONG> (Thumb, 382 bytes, Stack size 0 bytes, lab_0_task_1.o(.text.main))
+<P><STRONG><a name="[83]"></a>main</STRONG> (Thumb, 168 bytes, Stack size 0 bytes, lab_02.o(.text.main))
 <BR><BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;msDelay
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortB_as_Output_Init
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PE0_4_as_Input_Init
@@ -1283,7 +1283,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[8d]"></a>msDelay</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, lab_0_task_1.o(.text.msDelay))
+<P><STRONG><a name="[8d]"></a>msDelay</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, lab_02.o(.text.msDelay))
 <BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 

@@ -32,7 +32,7 @@ void PE0_4_as_Input_Init(void){
 	// Step 4: Enable digital pin functionaliy on PortE pin 0-4
 	GPIOD->DEN |= 0x1F; // Digital enable for PE0-4 (0001 1111)
 	// Step 5: Set PortD pin 0-4 as an output pin
-	GPIOD->DIR &= ~0x1F; // PE0-4 as output (0000 0111)
+	GPIOD->DIR &= ~0xC0; // PE0-4 as input (1110 0000)
 }
 void PortB_as_Output_Init(void){
 	// Step 1: Clock enable on PortB
@@ -51,10 +51,11 @@ int main(){
 	PE0_4_as_Input_Init();
 	PortB_as_Output_Init();
 	while(1){
+		GPIOB->DATA |= 0x01;//0000 0001
         if (GPIOE->DATA == 0x01)//0000 0001
         {
             GPIOB->DATA |= 0x01;//0000 0001
-						msDelay(500000);
+						msDelay(500);
 						GPIOB->DATA |= 0x02;//0000 0010
 						msDelay(500);
 						GPIOB ->DATA |= 0x04;//0000 0100
