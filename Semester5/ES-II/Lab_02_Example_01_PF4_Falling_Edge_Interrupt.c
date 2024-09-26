@@ -5,11 +5,11 @@ unsigned volatile long j;
 void PF3_Digital_Output_Init();
 void PF4_External_Interrupt_Input_Init();
 
-int main(){
+int main()
+{
 	PF3_Digital_Output_Init();
 	PF4_External_Interrupt_Input_Init();
-	while(1){
-	}
+	while(1){}
 }
 
 void GPIOF_Handler(){
@@ -19,44 +19,25 @@ void GPIOF_Handler(){
 	}
 }
 
-void PF3_Digital_Output_Init(){
-	// Step 1: Clock enable on PortF
-	SYSCTL->RCGCGPIO |= 1<<5;
-	for (j =0; j < 3 ; j++)		// at least 3 clock cyles
-	
-	// Step 2: APB is selected for PortF by selecting
-	// 0x40025000 as Base Address in DATA section
-	
-	// Step 3: Disable alternate functionality on PortF
-	GPIOF->AFSEL &= ~(1<<3);
-	
-	// Step 4: Enable digital pin functionaliy on PortF pin 3
-	GPIOF->DEN |= 1<<3; // Digital enable for PF3
-	
-	// Step 5: Set PortF pin 3 as an output pin
-	GPIOF->DIR |= 1<<3; // PF3 as output
+void PF3_Digital_Output_Init()
+{
+	SYSCTL->RCGCGPIO |= 1<<5;  // Step 1: Clock enable on PortF
+	for (j =0; j < 3 ; j++)	  // at least 3 clock cyles
+	GPIOF->AFSEL &= ~(1<<3); // Step 3: Disable alternate functionality on PortF
+	GPIOF->DEN |= 1<<3; 	// Step 4: Enable digital pin functionaliy on PortF pin 3
+	GPIOF->DIR |= 1<<3;    // Step 5: Set PortF pin 3 as an output pin
 }
 
-void PF4_External_Interrupt_Input_Init(){
-	// Step 1: Clock enable on PortF
-	SYSCTL->RCGCGPIO |= 1<<5;
-	for (j =0; j < 3 ; j++)		// at least 3 clock cyles
-	
-	// Step 2: APB is selected for PortF by selecting
-	// 0x40025000 as Base Address in DATA section
-	
-	// Step 3: Disable alternate functionality on PortF
-	GPIOF->AFSEL &= ~(1<<4);
-	
-	// Step 4: Enable digital pin functionaliy on PortF pin 4
-	GPIOF->DEN |= 1<<4; // Digital enable for PF4
-	
-	// Step 5: Set PortF pin 4 as an input pin
-	GPIOF->DIR &= ~(1<<4); // PF4 as input
-	GPIOF->PUR |= 1<<4;		// Use internal weak pull-up resistors
-	
+void PF4_External_Interrupt_Input_Init()
+{
+	SYSCTL->RCGCGPIO |= 1<<5; // Step 1: Clock enable on PortF
+	for (j =0; j < 3 ; j++)	 // at least 3 clock cyles
+	GPIOF->AFSEL &= ~(1<<4);// Step 3: Disable alternate functionality on PortF
+	GPIOF->DEN |= 1<<4;    // Step 4: Enable digital pin functionaliy on PortF pin 4
+	GPIOF->DIR &= ~(1<<4);// Step 5: Set PortF pin 4 as an input pin
+	GPIOF->PUR |= 1<<4;	 // Use internal weak pull-up resistors
 	// Step 6: Perform GPIO Port Interrupt Configurations
-	GPIOF->IS &= ~(1<<4);			// Enable edge-triggered interrupt at PF4
+	GPIOF->IS &= ~(1<<4);		// Enable edge-triggered interrupt at PF4
 	GPIOF->IEV &= ~(1<<4);		// Enable falling edge triggered interrupt at PF4
 	GPIOF->IBE &= ~(1<<4);		// Disable both edge triggered interrupt
 	GPIOF->IM |= 1<<4;			// PF0 interrupt is not masked
