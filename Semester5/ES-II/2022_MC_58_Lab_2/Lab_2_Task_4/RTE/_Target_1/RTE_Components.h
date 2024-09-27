@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'rough' 
+ * Project: 'lab2task4' 
  * Target:  'Target 1' 
  */
 
