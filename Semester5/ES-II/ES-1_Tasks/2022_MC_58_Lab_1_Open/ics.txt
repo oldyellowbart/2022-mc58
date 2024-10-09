@@ -1,0 +1,37 @@
+PCA9955BTW
+SEY126.1 11
+Zn D17 18
+
+
+
+
+
+ic2
+
+TAS 5720L TI761 CCVG
+
+
+
+
+IC3
+MRVL 823BA0 726GAJ
+
+
+
+
+ic4
+8DE3006-BTK    TVP9710.5JW   I726 a0e TW t1
+
+
+
+
+ic5
+88w8887-NAA2    K39LLA.1JW       1723   A2P     TW     E005
+
+
+
+
+
+
+IC6
+
