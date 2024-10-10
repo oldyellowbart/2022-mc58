@@ -68,7 +68,7 @@ int main()
 	ADC_SAMPLE_AVG_R |= 0x04; // 16x oversampling and then averaged
 
 	// No voltage selection
-	ADC_ACTIVE_SS_R = 0x08;	   // Configure ADC0 module for sequencer 3
+	ADC_ACTIVE_SS_R = 0x08;	   // Configure ADC0 module for sequencer 3 it takes single input
 	ADC_SS3_IN_MUX_R = 0x01;   // ANI_1 (PE2) is assigned to Input 0 of SS3
 	ADC_SS3_CONTROL_R |= 0x02; // Sample is end of sequence
 	while (1)
