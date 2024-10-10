@@ -20,24 +20,30 @@ Compiler and IDE used: Keil uVision 5.38 */
 
 // Global Variables
 unsigned volatile long j;
-
+unsigned volatile long i;
 // Function Declarations
 void PD0_2_as_Output_Init(void);
 void PortB_as_Output_Init(void);
+void PortE_as_Output(void);
 void write_LCD_Char(unsigned char data);
 void send_LCD_Cmd(unsigned char cmd);
 void write_LCD_Str(unsigned char *str);
 void LCD_Init(void);
+void usdelay(int time);
 
 // Main Function
 int main(){
 	PD0_2_as_Output_Init();
 	PortB_as_Output_Init();
 	LCD_Init();
-	
-	write_LCD_Str("Hello_World");
-	
+	PortE_as_Output();	
 	while(1){
+		write_LCD_Str("Haseeb");
+		GPIOE->DATA |= 0x02;
+		usdelay(1000000);
+		send_LCD_Cmd(0x01);
+		GPIOE->DATA &= ~(0x02);
+		usdelay(1000000);
 	}	
 }
 
@@ -102,13 +108,10 @@ void send_LCD_Cmd(unsigned char cmd){
 	
 	// Step 1. Pass command to 8-bit lines of LCD (D0-7)
 	GPIOB->DATA = cmd;
-	
 	// Step 2. Enable write operation on LCD (R/W bit = 0)
 	GPIOD->DATA &= ~(0x02);		// PD1 = 0000 0010
-	
 	// Step 3. Select Instructioin Register of LCD (RS bit = 0)
-	GPIOD->DATA &= ~(0x01);			// PD0 = 0000 0001
-	
+	GPIOD->DATA &= ~(0x01);			// PD0 = 0000 001
 	// Step 4. Enable LCD operation by sending high to low pulse on Enable pin
 	GPIOD->DATA |= 0x04; 			// PD2 = 0000 0100
 	for (j =0; j < 10000 ; j++);		// some milisecond delay
@@ -129,5 +132,14 @@ void LCD_Init(void){
 	send_LCD_Cmd(0x0C);		// Display on, cursor off
 	send_LCD_Cmd(0x01);		// Clear display screen
 	send_LCD_Cmd(0x80);		// Force cursor to the beginning (1st line)
-	send_LCD_Cmd(0x18);	
+//	send_LCD_Cmd(0x18);	
+}
+void usdelay(int time){for (i = 0; i < time*4; i++);}
+void PortE_as_Output(void)
+{
+	SYSCTL->RCGCGPIO |= 0x10;	// 01 0000
+	for (j =0; j < 3 ; j++)		// wait at least 3 clock cyles
+	GPIOE->AFSEL &= ~(0x02); //(0000 0010) Disable for PB0-7 (1111 1111)
+	GPIOE->DEN |= 0x02; // Digital enable for PB0-7 (1111 1111)
+	GPIOE->DIR |= 0x02; // Pe1 as output (0000 0001)
 }

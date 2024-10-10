@@ -17,12 +17,12 @@ Library Manager: ArmAr.exe V6.14
 Hex Converter:   FromElf.exe V6.14
 CPU DLL:         SARMCM3.DLL V5.31.0.0
 Dialog DLL:      DCM.DLL V1.17.3.0
-Target DLL:      UL2CM3.DLL V1.163.4.0
+Target DLL:      lmidk-agdi.dll V???
 Dialog DLL:      TCM.DLL V1.46.0.0
  
 <h2>Project:</h2>
-C:\Users\dell\Desktop\2022,mc58\ES-II\2022_MC_58_Lab_1\Lab_1_Task_1\Lab_1_Task1.uvprojx
-Project File Date:  09/17/2024
+C:\Users\dell\Desktop\2022,mc58\Semester5\ES-II\2022_MC_58_Lab_1\Lab_1_Task_1\Lab_1_Task1.uvprojx
+Project File Date:  10/09/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.14', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
@@ -298,50 +298,71 @@ C:/Users/dell/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123
 C:/Users/dell/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123/TM4C123GH6PM.h(1251): warning: anonymous unions are a C11 extension [-Wc11-extensions]
   union {
   ^
-task2.c(38): warning: passing 'char [12]' to parameter of type 'unsigned char *' converts between pointers to integer types with different sign [-Wpointer-sign]
-        write_LCD_Str("Hello_World");
-                      ^~~~~~~~~~~~~
-task2.c(29): note: passing argument to parameter 'str' here
+task2.c(41): warning: passing 'char [7]' to parameter of type 'unsigned char *' converts between pointers to integer types with different sign [-Wpointer-sign]
+                write_LCD_Str("Haseeb");
+                              ^~~~~~~~
+task2.c(30): note: passing argument to parameter 'str' here
 void write_LCD_Str(unsigned char *str);
                                   ^
-task2.c(54): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+task2.c(45): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                GPIOE->DATA &= ~(0x02);
+                            ~~ ^~~~~~~
+task2.c(60): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         GPIOD->AFSEL &= ~(0x07); // Disable for PD0-2 (0000 0111)
                      ~~ ^~~~~~~
-task2.c(71): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+task2.c(77): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         GPIOB->AFSEL &= ~(0xFF); // Disable for PB0-7 (1111 1111)
                      ~~ ^~~~~~~
-task2.c(88): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+task2.c(94): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         GPIOD->DATA &= ~(0x02);         // PD1 = 0000 0010
                     ~~ ^~~~~~~
-task2.c(96): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+task2.c(102): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         GPIOD->DATA &= ~(0x04);         // PD2 = 0000 0100
                     ~~ ^~~~~~~
-task2.c(107): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+task2.c(112): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         GPIOD->DATA &= ~(0x02);         // PD1 = 0000 0010
                     ~~ ^~~~~~~
-task2.c(110): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        GPIOD->DATA &= ~(0x01);                 // PD0 = 0000 0001
+task2.c(114): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOD->DATA &= ~(0x01);                 // PD0 = 0000 001
                     ~~ ^~~~~~~
-task2.c(115): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+task2.c(118): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         GPIOD->DATA &= ~(0x04);         // PD2 = 0000 0100
                     ~~ ^~~~~~~
-task2.c(119): warning: passing 'unsigned char *' to parameter of type 'const char *' converts between pointers to integer types with different sign [-Wpointer-sign]
+task2.c(121): warning: declaration shadows a variable in the global scope [-Wshadow]
+        unsigned int i, len;
+                     ^
+task2.c(23): note: previous declaration is here
+unsigned volatile long i;
+                       ^
+task2.c(122): warning: passing 'unsigned char *' to parameter of type 'const char *' converts between pointers to integer types with different sign [-Wpointer-sign]
         len = strlen(str);
                      ^~~
 C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(335): note: passing argument to parameter here
 extern _ARMABI size_t strlen(const char * /*s*/) __attribute__((__nonnull__(1)));
                                                ^
+task2.c(137): warning: comparison of integers of different signs: 'volatile unsigned long' and 'int' [-Wsign-compare]
+void usdelay(int time){for (i = 0; i < time*4; i++);}
+                                   ~ ^ ~~~~~~
+task2.c(142): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOE->AFSEL &= ~(0x02); //(0000 0010) Disable for PB0-7 (1111 1111)
+                     ~~ ^~~~~~~
 task2.c(22): warning: no previous extern declaration for non-static variable 'j' [-Wmissing-variable-declarations]
 unsigned volatile long j;
                        ^
 task2.c(22): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 unsigned volatile long j;
 ^
-54 warnings generated.
+task2.c(23): warning: no previous extern declaration for non-static variable 'i' [-Wmissing-variable-declarations]
+unsigned volatile long i;
+                       ^
+task2.c(23): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+unsigned volatile long i;
+^
+59 warnings generated.
 compiling task2.c...
 linking...
-Program Size: Code=1200 RO-data=636 RW-data=0 ZI-data=616  
-".\Objects\Lab_1_Task1.axf" - 0 Error(s), 98 Warning(s).
+Program Size: Code=1376 RO-data=636 RW-data=0 ZI-data=616  
+".\Objects\Lab_1_Task1.axf" - 0 Error(s), 103 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -367,9 +388,9 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:6.1.0
 
    * Component: Keil::Device:Startup:1.0.1
-      Source file:   Device\Source\system_TM4C123.c
-      Include file:  Device\Include\TM4C123\TM4C123.h
       Source file:   Device\Source\ARM\startup_TM4C123.s
+      Include file:  Device\Include\TM4C123\TM4C123.h
+      Source file:   Device\Source\system_TM4C123.c
 Build Time Elapsed:  00:00:01
 </pre>
 </body>
