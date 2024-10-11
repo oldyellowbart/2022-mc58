@@ -23,7 +23,7 @@ Compiler and IDE used: Keil uVision 5.38 */
 unsigned volatile long j;
 unsigned volatile long i;
 	unsigned int adc_data = 0;
-	unsigned volatile long pwm ;
+	unsigned volatile long pwm =0;
 // Function Declarations
 void PD0_2_as_Output_Init(void);
 void PortB_as_Output_Init(void);
@@ -44,24 +44,27 @@ int main(){
 	LCD_Init();
 	PortE_as_Output();	
 	while(1){
-		//write_LCD_Str("Haseeb");
+		write_LCD_Str("C");
+		//write_LCD_Char(01000001);
 		//GPIOE->DATA |= 0x02;
+		//GPIOB->DATA |= (01000001);
 		//usdelay(1000000);
-		//send_LCD_Cmd(0x01);
+		
 		//GPIOE->DATA &= ~(0x02);
 		
-		adc_data = ( ADC0->SSFIFO3 & 0xFFF);//ADC_SS3_FIFO_DATA_R & 0xFFF
-			pwm = ((adc_data * 100));
+	//	adc_data = ( ADC0->SSFIFO3 & 0xFFF);//ADC_SS3_FIFO_DATA_R & 0xFFF
+		//	pwm = ((adc_data * 0.5));//122.07 for 1sec
 
 			// Turn PE1 High
 			//GPIO_PORTE_DATA_R |= GPIO_PORTE_MASK;
-			GPIOE->DATA ^= 0x02;//on the pin1
-		usdelay(pwm); // Delay required to set servo at 0 degrees
+			//GPIOE->DATA ^= 0x02;//on the pin1
+		//usdelay(pwm); // Delay required to set servo at 0 degrees
 
 			// Turn PE1 Low
 			//GPIO_PORTE_DATA_R &= ~GPIO_PORTE_MASK;
 			//GPIOE->DATA &= ~(0x02);//of the pin1
-		//usdelay(pwm);
+		//usdelay(20000-pwm);
+		send_LCD_Cmd(0x01);
 	}	
 }
 
