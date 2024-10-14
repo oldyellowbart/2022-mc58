@@ -20,7 +20,7 @@ Compiler and IDE used: Keil uVision 5.38 */
 
 // Global Variables
 unsigned volatile long j;
-
+unsigned volatile long ik;
 // Function Declarations
 void PORTF_OUTPUT_INIT(void);
 void PD0_2_as_Output_Init(void);
@@ -29,13 +29,21 @@ void write_LCD_Char(unsigned char data);
 void send_LCD_Cmd(unsigned char cmd);
 void write_LCD_Str(unsigned char *str);
 void LCD_Init(void);
+void usdelay(unsigned long time);
 int count = 0;
 int count1 = 0;
 // Main Function
 int main(){
 	PD0_2_as_Output_Init();
 	PortB_as_Output_Init();
+	PORTF_OUTPUT_INIT();
 	LCD_Init();
+	
+	
+	while(1){
+	write_LCD_Str("SW2 Pressed");
+		usdelay(500000);
+		send_LCD_Cmd(0x01);
 	if(GPIOF->DATA == 0x01)
 {
 count++;
@@ -50,8 +58,6 @@ write_LCD_Str("SW2 Pressed");
 send_LCD_Cmd(0xC0);
 write_LCD_Str(count1);
 }
-	
-	while(1){
 	}	
 }
 
@@ -133,7 +139,7 @@ void send_LCD_Cmd(unsigned char cmd){
 	
 	// Step 1. Pass command to 8-bit lines of LCD (D0-7)
 	GPIOB->DATA = cmd;
-	
+	usdelay(10);
 	// Step 2. Enable write operation on LCD (R/W bit = 0)
 	GPIOD->DATA &= ~(0x02);		// PD1 = 0000 0010
 	
@@ -142,7 +148,7 @@ void send_LCD_Cmd(unsigned char cmd){
 	
 	// Step 4. Enable LCD operation by sending high to low pulse on Enable pin
 	GPIOD->DATA |= 0x04; 			// PD2 = 0000 0100
-	for (j =0; j < 10000 ; j++);		// some milisecond delay
+	usdelay(500);		// some milisecond delay
 	GPIOD->DATA &= ~(0x04); 	// PD2 = 0000 0100
 }
 void write_LCD_Str(unsigned char *str){
@@ -151,6 +157,8 @@ void write_LCD_Str(unsigned char *str){
 	
 	for (i = 0; i < len; i++){
 		write_LCD_Char(str[i]);
+		usdelay(10);
+		
 	}
 }
 
@@ -160,5 +168,6 @@ void LCD_Init(void){
 	send_LCD_Cmd(0x0C);		// Display on, cursor off
 	send_LCD_Cmd(0x01);		// Clear display screen
 	send_LCD_Cmd(0x80);		// Force cursor to the beginning (1st line)
-	send_LCD_Cmd(0x18);	
+	//send_LCD_Cmd(0x18);	
 }
+void usdelay(unsigned long time){for (ik = 0; ik*4 < time; ik++){}}
