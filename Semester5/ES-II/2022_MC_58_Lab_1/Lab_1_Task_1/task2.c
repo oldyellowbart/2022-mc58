@@ -30,7 +30,8 @@ void send_LCD_Cmd(unsigned char cmd);
 void write_LCD_Str(unsigned char *str);
 void LCD_Init(void);
 void usdelay(int time);
-
+void msdelay(int time1);
+unsigned char CC_7seg_Table[10] ={0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F} ;
 // Main Function
 int main(){
 	PD0_2_as_Output_Init();
@@ -41,33 +42,26 @@ int main(){
 	LCD_Init();
 	PortE_as_Output();
 	//write_LCD_Str("Hello_world123");
-//write_LCD_Char(02);	
+  //write_LCD_Char(02);	
 	while(1){
-
-		test = test+1;
-		write_LCD_Str("Hello_world12345678");
+		//test = test+1;
+	  //write_LCD_Str("Hello_world12345678");
 		//write_LCD_Char(test);
 		//GPIOE->DATA |= 0x02;
-		//GPIOB->DATA |= (0x41);
+		GPIOB->DATA |= (CC_7seg_Table[20-(pwm/100)]);
 		usdelay(1000000);
-		
+		GPIOB->DATA &=(0x00);
 		//GPIOE->DATA &= ~(0x02);
-		
-		//adc_data = ( ADC0->SSFIFO3 & 0xFFF);//ADC_SS3_FIFO_DATA_R & 0xFFF
-		//pwm = ((adc_data * 0.24)+1000);//122.07 for 1sec
-
-			// Turn PE1 High
-			//GPIO_PORTE_DATA_R |= GPIO_PORTE_MASK;
-			//GPIOE->DATA |= 0x02;//on the pin1
-		//usdelay(pwm); // Delay required to set servo at 0 degrees
-
-			// Turn PE1 Low
-			////GPIO_PORTE_DATA_R &= ~GPIO_PORTE_MASK;
-			//GPIOE->DATA &= ~(0x02);//of the pin1
-		//usdelay(20000-pwm);
-		send_LCD_Cmd(0x01);
-		//GPIOB->DATA &= (0x00);
-	}	
+		adc_data = ( ADC0->SSFIFO3 & 0xFFF);//ADC_SS3_FIFO_DATA_R & 0xFFF
+		pwm = ((adc_data * 0.263)+1000);//122.07 for 1sec
+    //send_LCD_Cmd(0x01);
+	  //GPIOB->DATA &= (0x00);		
+		GPIOE->DATA |= 0x02;// Turn PE1 High
+		usdelay(pwm); // Delay required to set servo at 0 degrees
+		GPIOE->DATA &= ~(0x02);// Turn PE1 Low
+		usdelay(20850-pwm);
+		GPIOB->DATA &=(0x00);
+		}	
 }
 
 // Function Defintions
@@ -110,7 +104,6 @@ void write_LCD_Char(int data)
 void send_LCD_Cmd(unsigned char cmd){
 	// Interfacing details---------------
 	// RS -> PD0		R/W -> PD1			EN -> PD2			D0-D7 -> PB0-PB7
-	
 	GPIOB->DATA = cmd;
   GPIOA->DATA |= (cmd & 0x80);	// Step 1. Pass command to 8-bit lines of LCD (D0-7)
 	GPIOD->DATA &= ~(0x02); // Step 2. Enable write operation on LCD (R/W bit = 0) PD1 = 0000 0010
@@ -135,6 +128,7 @@ void LCD_Init(void){
 //	send_LCD_Cmd(0x18);	
 }
 void usdelay(int time){for (i = 0; i < time*4; i++);}
+void msdelay(int time1){for (i = 0; i < time1*40000; i++);}
 void PortE_as_Output(void)
 {
 	SYSCTL->RCGCGPIO |= 0x10;	// 01 0000
@@ -147,28 +141,17 @@ void PortE_as_analog_Input_Init(void)
 {
 
 	// Enable the clock for Port A, B and E
-	//SYSTCL_RCGC_R |= SYSTCL_RCGC_GPIOPABE;
-	//DELAY(3);
 	SYSCTL->RCGCGPIO |= 0x10;
 	usdelay(3);
-	//GPIO_PORTE_AMSEL_R &= ~GPIO_PORTE_MASK;
 	GPIOE->AMSEL &= ~(0x02);//Disable_analog_mode_select_on PE2 1st time for digital write on pe1
 	// Step 4: Enable digital pin functionaliy
-//	GPIO_PORTE_DEN_R |= GPIO_PORTE_MASK; // Digital enable disable on pe2
 	GPIOE->DEN |= 0x02;
-
 	// Step 5: Enable digital pins as an output
-//	GPIO_PORTE_DIR_R |= GPIO_PORTE_MASK;
 	GPIOE->DIR |= 0x02;
 	// potentiometer connected to GPIO pin PE2 (ANI_1)
-//	GPIO_PORTE_DEN_R &= ~GPIO_PORTE_PIN2;//disable digital for analog
 	GPIOE->DEN &= ~(0x04); //digital disable on pe2
-	//GPIO_PORTE_AMSEL_R |= GPIO_PORTE_PIN2;
 	GPIOE->AMSEL |= 0x04;//analog enable on pe2
-	// Enable the clock for ADC0
-	//SYSTCL_RCGC_ADC_R |= ADC0_CLOCK_ENABLE;
 	SYSCTL->RCGCADC |= 0x01; //clock enable on adc 1
-//	DELAY(3);
 	usdelay(3);
 	ADC0->PP |= 0x03;// 250ksps
 	ADC0->EMUX |= 0xF000;// as there are 4 sample sequencer ss0,ss1,ss2,ss3 each having 4 bit to set the trigering mode here i select continous triger  mode for ss3

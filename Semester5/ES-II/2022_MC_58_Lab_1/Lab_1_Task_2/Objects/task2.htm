@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\task2.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\task2.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6140002: Last Updated: Mon Oct 14 22:22:19 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6140002: Last Updated: Wed Oct 16 08:57:08 2024
 <BR><P>
 <H3>Maximum Stack Usage =         24 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1293,11 +1293,10 @@ Global Symbols
 <P><STRONG><a name="[76]"></a>SystemInit</STRONG> (Thumb, 112 bytes, Stack size 0 bytes, system_tm4c123.o(.text.SystemInit))
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(.text)
 </UL>
-<P><STRONG><a name="[83]"></a>main</STRONG> (Thumb, 130 bytes, Stack size 0 bytes, task2.o(.text.main))
+<P><STRONG><a name="[83]"></a>main</STRONG> (Thumb, 124 bytes, Stack size 0 bytes, task2.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = main &rArr; write_LCD_Str &rArr; strlen
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_LCD_Str
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usdelay
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_LCD_Cmd
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortB_as_Output_Init
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PORTF_OUTPUT_INIT
@@ -1319,7 +1318,6 @@ Global Symbols
 <P><STRONG><a name="[91]"></a>usdelay</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, task2.o(.text.usdelay))
 <BR><BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_LCD_Str
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_LCD_Cmd
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[93]"></a>write_LCD_Char</STRONG> (Thumb, 90 bytes, Stack size 0 bytes, task2.o(.text.write_LCD_Char))

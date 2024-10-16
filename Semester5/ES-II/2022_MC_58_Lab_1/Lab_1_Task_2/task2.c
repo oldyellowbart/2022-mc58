@@ -38,12 +38,10 @@ int main(){
 	PortB_as_Output_Init();
 	PORTF_OUTPUT_INIT();
 	LCD_Init();
-	
+	GPIOB->DATA = 0xFF;
 	
 	while(1){
-	write_LCD_Str("SW2 Pressed");
-		usdelay(500000);
-		send_LCD_Cmd(0x01);
+	//write_LCD_Str("SW2 Pressed");
 	if(GPIOF->DATA == 0x01)
 {
 count++;
