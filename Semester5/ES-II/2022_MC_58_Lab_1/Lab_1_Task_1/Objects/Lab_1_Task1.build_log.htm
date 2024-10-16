@@ -298,81 +298,105 @@ C:/Users/dell/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123
 C:/Users/dell/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123/TM4C123GH6PM.h(1251): warning: anonymous unions are a C11 extension [-Wc11-extensions]
   union {
   ^
-task2.c(19): warning: no previous extern declaration for non-static variable 'adc_data' [-Wmissing-variable-declarations]
+task2.c(20): warning: no previous extern declaration for non-static variable 'adc_data' [-Wmissing-variable-declarations]
 unsigned int adc_data = 48;
              ^
-task2.c(19): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+task2.c(20): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 unsigned int adc_data = 48;
 ^
-task2.c(20): warning: no previous extern declaration for non-static variable 'pwm' [-Wmissing-variable-declarations]
+task2.c(21): warning: no previous extern declaration for non-static variable 'pwm' [-Wmissing-variable-declarations]
 unsigned volatile long pwm =0;
                        ^
-task2.c(20): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+task2.c(21): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 unsigned volatile long pwm =0;
 ^
-task2.c(21): warning: no previous extern declaration for non-static variable 'test' [-Wmissing-variable-declarations]
-int test = 38;
+task2.c(22): warning: no previous extern declaration for non-static variable 'test' [-Wmissing-variable-declarations]
+int test = 0;
     ^
-task2.c(21): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-int test = 38;
+task2.c(22): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int test = 0;
 ^
-task2.c(34): warning: no previous extern declaration for non-static variable 'CC_7seg_Table' [-Wmissing-variable-declarations]
-unsigned char CC_7seg_Table[10] ={0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F} ;
-              ^
-task2.c(34): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-unsigned char CC_7seg_Table[10] ={0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F} ;
+task2.c(24): warning: no previous extern declaration for non-static variable 'n' [-Wmissing-variable-declarations]
+int n[10] = {48,49,50,51,52,53,53,54,55,56};
+    ^
+task2.c(24): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int n[10] = {48,49,50,51,52,53,53,54,55,56};
 ^
+task2.c(49): warning: implicit conversion changes signedness: 'volatile unsigned long' to 'int' [-Wsign-conversion]
+                write_LCD_number(pwm);
+                ~~~~~~~~~~~~~~~~ ^~~
+task2.c(55): warning: implicit conversion turns floating-point number into integer: 'double' to 'unsigned long' [-Wfloat-conversion]
+                pwm = ((adc_data * 0.263)+1000);//122.07 for 1sec               
+                    ~  ~~~~~~~~~~~~~~~~~~^~~~~
+task2.c(57): warning: implicit conversion changes signedness: 'volatile unsigned long' to 'int' [-Wsign-conversion]
+                usdelay(pwm); // Delay required to set servo at 0 degrees
+                ~~~~~~~ ^~~
+task2.c(58): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                GPIOE->DATA &= ~(0x02);// Turn PE1 Low
+                            ~~ ^~~~~~~
+task2.c(59): warning: implicit conversion changes signedness: 'unsigned long' to 'int' [-Wsign-conversion]
+                usdelay(20850-pwm);
+                ~~~~~~~ ~~~~~^~~~
+task2.c(79): warning: comparison of integers of different signs: 'volatile unsigned long' and 'int' [-Wsign-compare]
+void usdelay(int time){for (i = 0; i < time*4; i++);}
+                                   ~ ^ ~~~~~~
+task2.c(80): warning: comparison of integers of different signs: 'volatile unsigned long' and 'int' [-Wsign-compare]
+void msdelay(int time1){for (i = 0; i < time1*4000; i++);}
+                                    ~ ^ ~~~~~~~~~~
 task2.c(86): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        GPIOA->AFSEL&= ~(0x80);// Step 3: Disable alternate functionality on PortD(0000 0111)
-                    ~~ ^~~~~~~
+        GPIOE->AFSEL &= ~(0x02);//(0000 0010) Disable for PB0-7 (1111 1111)
+                     ~~ ^~~~~~~
 task2.c(96): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOE->AMSEL &= ~(0x02);//Disable_analog_mode_select_on PE2 1st time for digital write on pe1
+                     ~~ ^~~~~~~
+task2.c(102): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOE->DEN &= ~(0x04); //digital disable on pe2
+                   ~~ ^~~~~~~
+task2.c(120): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         GPIOB->DATA |= data;                      // Step 1. Pass data to 8-bit lines of LCD (D0-7)
                     ~~ ^~~~
-task2.c(98): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        GPIOD->DATA &= ~(0x02);          // Step 2. Enable write operation on LCD (R/W bit = 0) PD1 = 0000 0010
+task2.c(121): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->DATA &= ~(0x08);          // Step 2. Enable write operation on LCD (R/W bit = 0) PD1 = 0000 0010
                     ~~ ^~~~~~~
-task2.c(102): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        GPIOD->DATA &= ~(0x04);// disabled the enable for next time PD2 = 0000 0100
+task2.c(125): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->DATA &= ~(0x10);// disabled the enable for next time PD2 = 0000 0100
                     ~~ ^~~~~~~
-task2.c(110): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        GPIOD->DATA &= ~(0x02); // Step 2. Enable write operation on LCD (R/W bit = 0) PD1 = 0000 0010
+task2.c(132): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->DATA &= ~(0x08); // Step 2. Enable write operation on LCD (R/W bit = 0) PD1 = 0000 0010
                     ~~ ^~~~~~~
-task2.c(111): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        GPIOD->DATA &= ~(0x01);// Step 3. Select Instructioin Register of LCD (RS bit = 0)      PD0 = 0000 001
+task2.c(133): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->DATA &= ~(0x04);// Step 3. Select Instructioin Register of LCD (RS bit = 0)      PD0 = 0000 001
                     ~~ ^~~~~~~
-task2.c(114): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        GPIOD->DATA &= ~(0x04);         // disabled for next timePD2 = 0000 0100
+task2.c(136): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->DATA &= ~(0x10);         // disabled for next timePD2 = 0000 0100
                     ~~ ^~~~~~~
-task2.c(117): warning: declaration shadows a variable in the global scope [-Wshadow]
+task2.c(139): warning: declaration shadows a variable in the global scope [-Wshadow]
         unsigned int i, len;
                      ^
 task2.c(18): note: previous declaration is here
 unsigned volatile long i;
                        ^
-task2.c(118): warning: passing 'unsigned char *' to parameter of type 'const char *' converts between pointers to integer types with different sign [-Wpointer-sign]
+task2.c(140): warning: passing 'unsigned char *' to parameter of type 'const char *' converts between pointers to integer types with different sign [-Wpointer-sign]
         len = strlen(str);
                      ^~~
 C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h(335): note: passing argument to parameter here
 extern _ARMABI size_t strlen(const char * /*s*/) __attribute__((__nonnull__(1)));
                                                ^
-task2.c(131): warning: comparison of integers of different signs: 'volatile unsigned long' and 'int' [-Wsign-compare]
-void usdelay(int time){for (i = 0; i < time*4; i++);}
-                                   ~ ^ ~~~~~~
-task2.c(132): warning: comparison of integers of different signs: 'volatile unsigned long' and 'int' [-Wsign-compare]
-void msdelay(int time1){for (i = 0; i < time1*40000; i++);}
-                                    ~ ^ ~~~~~~~~~~~
-task2.c(137): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        GPIOE->AFSEL &= ~(0x02);//(0000 0010) Disable for PB0-7 (1111 1111)
-                     ~~ ^~~~~~~
-task2.c(147): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        GPIOE->AMSEL &= ~(0x02);//Disable_analog_mode_select_on PE2 1st time for digital write on pe1
-                     ~~ ^~~~~~~
-task2.c(153): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        GPIOE->DEN &= ~(0x04); //digital disable on pe2
-                   ~~ ^~~~~~~
-task2.c(165): warning: no newline at end of file [-Wnewline-eof]
-}
- ^
+task2.c(167): warning: variable length array used [-Wvla]
+    char digits[length + 1]; // Array to hold the individual digits as characters
+               ^
+task2.c(170): warning: declaration shadows a variable in the global scope [-Wshadow]
+    for (int i = length - 1; i >= 0; i--) {
+             ^
+task2.c(18): note: previous declaration is here
+unsigned volatile long i;
+                       ^
+task2.c(177): warning: declaration shadows a variable in the global scope [-Wshadow]
+    for (int i = 0; i < length; i++) {
+             ^
+task2.c(18): note: previous declaration is here
+unsigned volatile long i;
+                       ^
 task2.c(17): warning: no previous extern declaration for non-static variable 'j' [-Wmissing-variable-declarations]
 unsigned volatile long j;
                        ^
@@ -385,11 +409,53 @@ unsigned volatile long i;
 task2.c(18): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 unsigned volatile long i;
 ^
-65 warnings generated.
+task2.c(19): warning: no previous extern declaration for non-static variable 'loop1' [-Wmissing-variable-declarations]
+unsigned volatile long loop1;
+                       ^
+task2.c(19): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+unsigned volatile long loop1;
+^
+task2.c(23): warning: no previous extern declaration for non-static variable 'c0' [-Wmissing-variable-declarations]
+int c0,c1,c2,c3,c4;
+    ^
+task2.c(23): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int c0,c1,c2,c3,c4;
+^
+task2.c(23): warning: no previous extern declaration for non-static variable 'c1' [-Wmissing-variable-declarations]
+int c0,c1,c2,c3,c4;
+       ^
+task2.c(23): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int c0,c1,c2,c3,c4;
+^
+task2.c(23): warning: no previous extern declaration for non-static variable 'c2' [-Wmissing-variable-declarations]
+int c0,c1,c2,c3,c4;
+          ^
+task2.c(23): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int c0,c1,c2,c3,c4;
+^
+task2.c(23): warning: no previous extern declaration for non-static variable 'c3' [-Wmissing-variable-declarations]
+int c0,c1,c2,c3,c4;
+             ^
+task2.c(23): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int c0,c1,c2,c3,c4;
+^
+task2.c(23): warning: no previous extern declaration for non-static variable 'c4' [-Wmissing-variable-declarations]
+int c0,c1,c2,c3,c4;
+                ^
+task2.c(23): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int c0,c1,c2,c3,c4;
+^
+task2.c(25): warning: no previous extern declaration for non-static variable 'pwm_char' [-Wmissing-variable-declarations]
+char pwm_char;
+     ^
+task2.c(25): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+char pwm_char;
+^
+78 warnings generated.
 compiling task2.c...
 linking...
-Program Size: Code=1484 RO-data=652 RW-data=16 ZI-data=616  
-".\Objects\Lab_1_Task1.axf" - 0 Error(s), 109 Warning(s).
+Program Size: Code=3088 RO-data=652 RW-data=4 ZI-data=624  
+".\Objects\Lab_1_Task1.axf" - 0 Error(s), 122 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -415,10 +481,10 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:6.1.0
 
    * Component: Keil::Device:Startup:1.0.1
+      Include file:  Device\Include\TM4C123\TM4C123.h
       Source file:   Device\Source\ARM\startup_TM4C123.s
       Source file:   Device\Source\system_TM4C123.c
-      Include file:  Device\Include\TM4C123\TM4C123.h
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

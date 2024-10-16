@@ -19,7 +19,6 @@ int main()
 	GPIOB->DATA = CC_7seg_Table[edge_count];
 	}
 }
-
 void PD0_as_WT2CCP0_Init(void){
 	SYSCTL->RCGCGPIO |= 0x08; // Step 1: Clock enable on PortD 00 1000
 	for (j =0; j < 3 ; j++)	;// at least 3 clock cyles
@@ -29,7 +28,6 @@ void PD0_as_WT2CCP0_Init(void){
 	GPIOD->PCTL &= ~0x0000000F;		// clear the bit fields
 	GPIOD->PCTL |= 0x00000007;// Step 6: Configure PortB pin 2 as T3CCP0 pin (Table 10-2 of Datasheet, page # 651)
 }
-
 void Wtimer2A_RisingEdgeEvent_Init(void){
 	SYSCTL->RCGCWTIMER |=0x04;// Step 1: Enable Timer Clock on WTIMER2 (0000 0100)
 	for (j =0; j < 3 ; j++)	// wait at least 3 clock cyles
